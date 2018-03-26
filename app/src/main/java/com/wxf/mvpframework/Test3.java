@@ -1,97 +1,42 @@
 package com.wxf.mvpframework;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/12/12.
  */
 
 public class Test3
 {
-    public static void quickSort(int[] array)
+    enum TestEnum
     {
-        if(null != array && array.length > 1)
+        TEXT(1,"文本"),AUDIO(2,"语音");
+        int value;
+        String name;
+
+        TestEnum(int value,String name)
         {
-            sort(array,0,array.length - 1);
+            this.value = value;
+            this.name = name;
+        }
+        public int getValue() {
+            return value;
         }
 
-        for(int i = 0 ;i < array.length; i++)
+        public String getName()
         {
-            if(i != 0)
-            {
-                System.out.print(",");
-            }
-            System.out.print(array[i]);
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return "编码"+value+","+name;
         }
     }
-
-    public static void sort(int[] array,int low,int high)
+    public static void main(String[] args)
     {
-        if (low < high)
-        {
-            int division = getDivisionPosition(array,low,high);
-            sort(array,low,division-1);
-            sort(array,division+1,high);
-        }
-    }
-
-    public static int getDivisionPosition(int[] array,int low,int high)
-    {
-        int base = array[low];
-
-        while(low < high)
-        {
-            while(low < high && array[high] >= base)
-            {
-                high--;
-            }
-            changePosition(array,low,high);
-
-            while (low < high && array[low] <= base)
-            {
-                low++;
-            }
-            changePosition(array,low,high);
-        }
-
-        return low;
-    }
-
-    /**
-     * 交换位置
-     *
-     * @param array
-     * @param start
-     * @param end
-     */
-    private static void changePosition(int[] array,int start,int end)
-    {
-        if(start == end)
-        {
-            return;
-        }
-
-        int base = array[start];
-        array[start] = array[end];
-        array[end] = base;
-    }
-
-
-    public static void main(String[] args) {
-//        int[] array = {5,4,8,1,7,9,6};
-//        quickSort(array);
-        int i=0;
-        for(;;)
-        {
-            System.out.print(i+"");
-            i++;
-            if(i==5)
-            {
-                return;
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        TestEnum te = TestEnum.AUDIO;
+        System.out.print(te);
     }
 }

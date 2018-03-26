@@ -4,9 +4,13 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Random;
 
@@ -44,6 +48,13 @@ public class Main2Activity extends AppCompatActivity {
 //                startColorChangeAnim();
             }
         });
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe
+    public void onTestEvent(TestEvent event)
+    {
+        Log.e("2222222222","22222222222");
     }
 
     public void startColorChangeAnim() {

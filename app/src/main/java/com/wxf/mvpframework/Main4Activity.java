@@ -1,11 +1,14 @@
 package com.wxf.mvpframework;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Main4Activity extends AppCompatActivity {
+import org.greenrobot.eventbus.EventBus;
+
+public class Main4Activity extends Activity {
     WaveView wv;
     Button btn;
 
@@ -23,11 +26,20 @@ public class Main4Activity extends AppCompatActivity {
             }
         });
 
+//        EventBus.getDefault().register(this);
+
+        EventBus.getDefault().post(new TestEvent());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        EventBus.getDefault().unregister(this);
     }
 }

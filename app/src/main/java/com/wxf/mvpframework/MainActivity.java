@@ -1,15 +1,9 @@
 package com.wxf.mvpframework;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.constraint.solver.widgets.Snapshot;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,33 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.CircularPropagation;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.GsonBuilder;
-import com.wxf.mvpframework.service.TestAIDLService;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
-import java.util.concurrent.ConcurrentMap;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -90,6 +69,23 @@ public class MainActivity extends AppCompatActivity implements Fregment1.OnFragm
         ft.add(R.id.fl,Fregment1.newInstance(null,null),"").commitAllowingStateLoss();
 
         log("onCreate");
+
+        java.util.Observable observable;
+        String st;
+
+        EventBus.getDefault().register(this);
+
+        List list = new ArrayList<>();
+        list.add("a");
+
+        Glide.with(this).load("");
+
+    }
+
+    @Subscribe
+    public void onTestEvent(TestEvent event)
+    {
+        Log.e("ssssssssssssssssss","ssssssssss");
     }
 
     @Override
